@@ -22,6 +22,7 @@ module.exports = reverse;
 // }
 // return reverseString.join('');
 
+// solution3:
 // let reverseString='';
 // for (var character of str) {
 //  reverseString=character + reverseString;
