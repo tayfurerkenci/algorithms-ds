@@ -1,4 +1,4 @@
-const reverse = require('./index');
+import reverse from './index';
 
 test('Reverse function exists', () => {
   expect(reverse).toBeDefined();
