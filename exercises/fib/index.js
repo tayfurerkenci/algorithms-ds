@@ -8,6 +8,67 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {}
+function memoize(fn){
+  const cache = {};
+
+  return function (...args) {
+    if(cache[args]){
+      return cache[args];
+    }
+
+    const result= fn.apply(this, args);
+    cache[args]=result;
+
+    return result;
+  }
+}
+
+function fib(n) {
+  if(n < 2)
+  {
+    return n;
+  }
+
+  return fib(n - 1) + fib(n - 2);
+
+}
+
+fib = memoize(fib);
 
 module.exports = fib;
+
+// alternative solution 1:
+// function fib(n) {
+//   const fibonacciArray=[0];
+//   let counter=1;
+//   for(let i = 1; i <= n; i++)
+//   {
+//     fibonacciArray.push(counter);
+//     counter+=fibonacciArray[i-1];
+//   }
+//   return fibonacciArray[n];
+// }
+
+// alternative solution 2:
+// function fib(n) {
+//   const result = [0, 1];
+//
+//   for(let i = 2; i <= n;i++){
+//     const a = result[i-1];
+//     const b = result[i-2];
+//
+//     result.push(a+b);
+//   }
+//   return result[n];
+// }
+
+// original recursive solution:
+// function fib(n) {
+//   if(n < 2)
+//   {
+//     return n;
+//   }
+//
+//   return fib(n - 1) + fib(n - 2);
+//
+// }
